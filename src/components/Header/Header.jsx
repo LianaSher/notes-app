@@ -24,7 +24,10 @@ export const Header = () => {
 
   const handleDelete = () => {
     const noteIdForDelete = activeNote.id;
-
+    const isConfirm = window.confirm("Please confirm removing this note");
+    if (!isConfirm) {
+      return;
+    }
     const updatedNotes = notes.filter((note) => note.id !== noteIdForDelete);
     setNotes(updatedNotes);
     setdeletedNoteId(noteIdForDelete);
@@ -34,8 +37,18 @@ export const Header = () => {
   return (
     <header>
       <button onClick={addItem}>Add</button>
-      <button onClick={handleDelete}>Delete</button>
-      <button onClick={handleEdit}>Edit</button>
+      <button
+        onClick={handleDelete}
+        disabled={Boolean(!Object.keys(activeNote).length)}
+      >
+        Delete
+      </button>
+      <button
+        onClick={handleEdit}
+        disabled={Boolean(!Object.keys(activeNote).length)}
+      >
+        Edit
+      </button>
       <SearchBox />
     </header>
   );

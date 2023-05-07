@@ -15,6 +15,7 @@ function App() {
   const [activeNote, setActiveNote] = useState({});
   const [deletedNoteId, setdeletedNoteId] = useState("");
   const [isEdition, setIsEdition] = useState(false);
+  const [filtredNotes, setFiltredNotes] = useState([]);
 
   useEffect(() => {
     async function openDatabase() {
@@ -81,16 +82,13 @@ function App() {
 
   useEffect(() => {
     async function deleteNote(deletedNoteId) {
+      if (!db) {
+        return;
+      }
       try {
         const transaction = db.transaction("myObjectStore", "readwrite");
         const objectStore = transaction.objectStore("myObjectStore");
         await objectStore.delete(deletedNoteId);
-        // const newNotes = notes.filter((note) => note.id !== id);
-        // setNotes(newNotes);
-
-        // if (activeNote.id === id) {
-        //   setActiveNote({});
-        // setIsEdition(false);
       } catch (error) {
         console.error(error);
       }
@@ -104,6 +102,7 @@ function App() {
     const newItem = { id: `${new Date().getTime()}`, text: "Your new note" };
     await objectStore.add(newItem);
     setNotes([...notes, newItem]);
+    setActiveNote(newItem);
   };
 
   return (
@@ -117,6 +116,8 @@ function App() {
         isEdition,
         setIsEdition,
         setdeletedNoteId,
+        setFiltredNotes,
+        filtredNotes,
       }}
     >
       <div>

@@ -2,8 +2,6 @@ import { useContext } from "react";
 
 import { AppContext } from "../../App";
 
-import { dateFormatting } from "../../services";
-
 export const NotesForm = () => {
   const { notes, setNotes, activeNote, setActiveNote, setIsEdition } =
     useContext(AppContext);
@@ -19,21 +17,15 @@ export const NotesForm = () => {
     setIsEdition(false);
   };
 
-  const date = dateFormatting(activeNote.id);
-
   return (
-    <form>
-      <label>
-        {date}
-        <textarea
-          onChange={handleInput}
-          onBlur={handleBlur}
-          name="text"
-          wrap="soft"
-          value={activeNote.text}
-        ></textarea>
-      </label>
-      <button>save</button>
-    </form>
+    <label>
+      <textarea
+        onChange={handleInput}
+        onBlur={handleBlur}
+        name="text"
+        wrap="soft"
+        value={activeNote.text}
+      ></textarea>
+    </label>
   );
 };
