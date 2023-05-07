@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AppContext } from "../../App";
 
 import { SearchBox } from "../SearchBox/SearchBox";
-console.log("test");
+
 export const Header = () => {
   const {
     addItem,
