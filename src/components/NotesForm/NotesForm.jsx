@@ -2,21 +2,35 @@ import { useContext } from "react";
 
 import { AppContext } from "../../App";
 
+import { dateFormatting } from "../../services";
+
 export const NotesForm = () => {
-  const { notes, activeNote, setActiveNote } = useContext(AppContext);
+  const { notes, setNotes, activeNote, setActiveNote, setIsEdition } =
+    useContext(AppContext);
 
   const handleInput = (e) => {
-    console.log(e.target.value);
+    setActiveNote({ ...activeNote, text: e.target.value });
+    const updatedNotes = notes.map((note) =>
+      note.id === activeNote.id ? activeNote : note
+    );
+    setNotes(updatedNotes);
   };
+  const handleBlur = () => {
+    setIsEdition(false);
+  };
+
+  const date = dateFormatting(activeNote.id);
 
   return (
     <form>
       <label>
+        {date}
         <textarea
           onChange={handleInput}
+          onBlur={handleBlur}
           name="text"
           wrap="soft"
-          //   value={activeNoteObj.text}
+          value={activeNote.text}
         ></textarea>
       </label>
       <button>save</button>

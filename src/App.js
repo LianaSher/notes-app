@@ -13,6 +13,7 @@ function App() {
   const [db, setDb] = useState(null);
   const [notes, setNotes] = useState([]);
   const [activeNote, setActiveNote] = useState({});
+  const [deletedNoteId, setdeletedNoteId] = useState("");
   const [isEdition, setIsEdition] = useState(false);
 
   useEffect(() => {
@@ -62,13 +63,14 @@ function App() {
 
   useEffect(() => {
     async function updateNoteText() {
-      if (!db || !activeNote) {
+      if (!db || !Object.keys(activeNote).length) {
         return;
       }
       try {
         const transaction = db.transaction("myObjectStore", "readwrite");
         const objectStore = transaction.objectStore("myObjectStore");
         const note = notes.find((note) => note.id === activeNote.id);
+
         await objectStore.put({ ...note, text: activeNote.text });
       } catch (error) {
         console.error(error);
@@ -77,10 +79,29 @@ function App() {
     updateNoteText();
   }, [db, activeNote, notes]);
 
+  useEffect(() => {
+    async function deleteNote(deletedNoteId) {
+      try {
+        const transaction = db.transaction("myObjectStore", "readwrite");
+        const objectStore = transaction.objectStore("myObjectStore");
+        await objectStore.delete(deletedNoteId);
+        // const newNotes = notes.filter((note) => note.id !== id);
+        // setNotes(newNotes);
+
+        // if (activeNote.id === id) {
+        //   setActiveNote({});
+        // setIsEdition(false);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    deleteNote(deletedNoteId);
+  }, [db, notes, deletedNoteId]);
+
   const addItem = async () => {
     const transaction = db.transaction("myObjectStore", "readwrite");
     const objectStore = transaction.objectStore("myObjectStore");
-    const newItem = { id: `${new Date().getTime()}`, text: "hello" };
+    const newItem = { id: `${new Date().getTime()}`, text: "Your new note" };
     await objectStore.add(newItem);
     setNotes([...notes, newItem]);
   };
@@ -89,11 +110,13 @@ function App() {
     <AppContext.Provider
       value={{
         notes,
+        setNotes,
         activeNote,
         setActiveNote,
         addItem,
         isEdition,
         setIsEdition,
+        setdeletedNoteId,
       }}
     >
       <div>

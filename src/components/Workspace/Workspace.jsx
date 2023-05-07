@@ -10,7 +10,5 @@ export const Workspace = () => {
     return;
   }
 
-  //   const activeNoteObj = notes.find(({ id }) => id === activeNote);
-
-  return <div>{isEdition ? <NotesForm /> : <p></p>}</div>;
+  return <div>{isEdition ? <NotesForm /> : <p>{activeNote.text}</p>}</div>;
 };
