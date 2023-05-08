@@ -1,8 +1,15 @@
 import { useContext } from "react";
 
 import { AppContext } from "../../App";
-
 import { SearchBox } from "../SearchBox/SearchBox";
+
+import {
+  HeaderStyled,
+  ButtonsWrapper,
+  AddButton,
+  DelButton,
+  EditButton,
+} from "../Header/Header.styled";
 
 export const Header = () => {
   const {
@@ -35,21 +42,19 @@ export const Header = () => {
   };
 
   return (
-    <header>
-      <button onClick={addItem}>Add</button>
-      <button
-        onClick={handleDelete}
-        disabled={Boolean(!Object.keys(activeNote).length)}
-      >
-        Delete
-      </button>
-      <button
-        onClick={handleEdit}
-        disabled={Boolean(!Object.keys(activeNote).length)}
-      >
-        Edit
-      </button>
+    <HeaderStyled>
+      <ButtonsWrapper>
+        <AddButton onClick={addItem}></AddButton>
+        <DelButton
+          onClick={handleDelete}
+          disabled={Boolean(!Object.keys(activeNote).length)}
+        ></DelButton>
+        <EditButton
+          onClick={handleEdit}
+          disabled={Boolean(!Object.keys(activeNote).length)}
+        ></EditButton>
+      </ButtonsWrapper>
       <SearchBox />
-    </header>
+    </HeaderStyled>
   );
 };

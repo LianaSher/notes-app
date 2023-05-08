@@ -5,6 +5,8 @@ import { AppContext } from "../../App";
 import { NotesForm } from "../NotesForm/NotesForm";
 import { dateFormatting } from "../../services";
 
+import { Space, TextWrap } from "./WorkSpace.styled";
+
 export const Workspace = () => {
   const { notes, activeNote, isEdition } = useContext(AppContext);
 
@@ -15,9 +17,11 @@ export const Workspace = () => {
   }
 
   return (
-    <>
+    <Space>
       <p>{date}</p>
-      <div>{isEdition ? <NotesForm /> : <p>{activeNote.text}</p>}</div>
-    </>
+      <TextWrap>
+        {isEdition ? <NotesForm /> : <p>{activeNote.text}</p>}
+      </TextWrap>
+    </Space>
   );
 };

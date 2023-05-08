@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../App";
 
+import { Input } from "../SearchBox/SearchBox.styled";
+
 export const SearchBox = () => {
   const [filter, setFilter] = useState("");
 
@@ -22,7 +24,7 @@ export const SearchBox = () => {
   }, [notes, setFiltredNotes, filter]);
 
   return (
-    <input
+    <Input
       onBlur={handleBlur}
       onChange={handleInput}
       type="text"
@@ -31,6 +33,6 @@ export const SearchBox = () => {
       placeholder="Search"
       name="search"
       value={filter}
-    ></input>
+    ></Input>
   );
 };

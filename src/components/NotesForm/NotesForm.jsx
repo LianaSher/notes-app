@@ -2,30 +2,31 @@ import { useContext } from "react";
 
 import { AppContext } from "../../App";
 
+import { Label, TextArea } from "./NotesForm.styled";
+
 export const NotesForm = () => {
-  const { notes, setNotes, activeNote, setActiveNote, setIsEdition } =
+  const { setNotes, activeNote, setActiveNote, setIsEdition } =
     useContext(AppContext);
 
   const handleInput = (e) => {
-    setActiveNote({ ...activeNote, text: e.target.value });
-    const updatedNotes = notes.map((note) =>
-      note.id === activeNote.id ? activeNote : note
-    );
-    setNotes(updatedNotes);
+    setActiveNote((prevNote) => ({ ...prevNote, text: e.target.value }));
   };
   const handleBlur = () => {
     setIsEdition(false);
+    setNotes((prevNotes) =>
+      prevNotes.map((note) => (note.id === activeNote.id ? activeNote : note))
+    );
   };
 
   return (
-    <label>
-      <textarea
+    <Label>
+      <TextArea
         onChange={handleInput}
         onBlur={handleBlur}
         name="text"
         wrap="soft"
         value={activeNote.text}
-      ></textarea>
-    </label>
+      ></TextArea>
+    </Label>
   );
 };

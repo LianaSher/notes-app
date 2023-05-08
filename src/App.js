@@ -1,11 +1,12 @@
 import { useState, useEffect, createContext } from "react";
 import { openDB } from "idb";
-
-import "./App.css";
+import { GlobalStyle } from "../src/components/GlobalStyles";
 
 import { Header } from "./components/Header/Header.jsx";
 import { SideBar } from "./components/SideBar/SideBar.jsx";
 import { Workspace } from "./components/Workspace/Workspace.jsx";
+
+import { MainContainer, Section } from "./App.styled";
 
 export const AppContext = createContext();
 
@@ -48,9 +49,7 @@ function App() {
       }
       try {
         const transaction = db.transaction("myObjectStore", "readonly");
-
         const objectStore = transaction.objectStore("myObjectStore");
-
         const allNotes = await objectStore.getAll();
 
         setNotes(allNotes);
@@ -120,11 +119,14 @@ function App() {
         filtredNotes,
       }}
     >
-      <div>
+      <MainContainer>
         <Header />
-        <SideBar />
-        <Workspace />
-      </div>
+        <Section>
+          <SideBar />
+          <Workspace />
+        </Section>
+      </MainContainer>
+      <GlobalStyle />
     </AppContext.Provider>
   );
 }
