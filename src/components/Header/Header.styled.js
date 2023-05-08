@@ -66,6 +66,10 @@ export const DelButton = styled.button`
   &:focus {
     background-color: white;
   }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
   @media screen and (min-width: 1200px) {
     height: 30px;
     width: 70px;
@@ -86,6 +90,10 @@ export const EditButton = styled.button`
   &:hover,
   &:focus {
     background-color: white;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
   @media screen and (min-width: 1200px) {
     height: 30px;
