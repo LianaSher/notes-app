@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/notes-app/static/css/main.073c9b0a.css",
-    "main.js": "/notes-app/static/js/main.fae9c3d7.js",
-    "static/js/787.9243050f.chunk.js": "/notes-app/static/js/787.9243050f.chunk.js",
+    "main.css": "/notes-app/static/css/main.17654e45.css",
+    "main.js": "/notes-app/static/js/main.dc92d78e.js",
+    "static/media/edit.svg": "/notes-app/static/media/edit.6e7970b2ab0824f4d06d86c381440432.svg",
     "index.html": "/notes-app/index.html",
-    "main.073c9b0a.css.map": "/notes-app/static/css/main.073c9b0a.css.map",
-    "main.fae9c3d7.js.map": "/notes-app/static/js/main.fae9c3d7.js.map",
-    "787.9243050f.chunk.js.map": "/notes-app/static/js/787.9243050f.chunk.js.map"
+    "static/media/trash.svg": "/notes-app/static/media/trash.e088de1da70db4cf0b61e5589fef1d06.svg",
+    "static/media/search.svg": "/notes-app/static/media/search.d64f601c0674635111f58f51cb683628.svg",
+    "static/media/plus.svg": "/notes-app/static/media/plus.95ac9898241e740f3d7fed4528bb8720.svg",
+    "main.17654e45.css.map": "/notes-app/static/css/main.17654e45.css.map",
+    "main.dc92d78e.js.map": "/notes-app/static/js/main.dc92d78e.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.fae9c3d7.js"
+    "static/css/main.17654e45.css",
+    "static/js/main.dc92d78e.js"
   ]
 }
