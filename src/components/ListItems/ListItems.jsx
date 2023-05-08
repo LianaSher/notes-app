@@ -21,7 +21,7 @@ export const ListItems = () => {
         key={id}
         onClick={handleClick}
       >
-        {text}
+        {text.length > 25 ? text.slice(0, 30) + "..." : text}
       </Item>
     );
   });
