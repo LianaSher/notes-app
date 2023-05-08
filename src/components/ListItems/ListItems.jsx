@@ -16,7 +16,7 @@ export const ListItems = () => {
   return list.map(({ id, text }) => {
     return (
       <Item
-        active={id === activeNote.id ? "true" : "false"}
+        active={id === activeNote.id ? 1 : null}
         id={id}
         key={id}
         onClick={handleClick}
